@@ -1,6 +1,7 @@
 import os
 import streamlit as st
 from langchain_google_genai import ChatGoogleGenerativeAI
+import time
 
 
 # Show title and description.
@@ -37,9 +38,21 @@ if prompt := st.chat_input("What is up?"):
     with st.chat_message("user"):
         st.markdown(prompt)
 
-    # Stream the response to the chat using `st.write_stream`, then store it in 
-    # session state.
+    # Create a chat message for the assistant
     with st.chat_message("assistant"):
+        # Create a placeholder for the response
+        response_placeholder = st.empty()
+
+        # Call the LLM and stream the response
+        llm = ChatGoogleGenerativeAI(model="gemini-1.5-flash", temperature=0.7)
         ai_msg = llm.invoke(st.session_state.messages)
-        st.markdown(ai_msg.content)
-    st.session_state.messages.append(["assistant",ai_msg.content])
+
+        # Stream the response character by character
+        text = ""
+        for char in ai_msg.content:
+            text = text + char
+            response_placeholder.markdown(text, unsafe_allow_html=True)
+            time.sleep(0.01)  # 文字間の遅延を設定
+
+        # Store the complete response in session state
+        st.session_state.messages.append(["assistant", ai_msg.content])
