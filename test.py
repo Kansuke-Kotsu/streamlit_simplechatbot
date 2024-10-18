@@ -6,8 +6,7 @@ from langchain_google_genai import ChatGoogleGenerativeAI
 # Show title and description.
 st.title("💬 Simple Chatbot")
 st.write("This is a simple chatbot that uses several models to generate responses. ")
-st.write("If you want to use OpenAI model, you need to input your API Key.")
-st.write("If you want to use OpenSorce LLM model, you can use without your key.")
+
 
 # API Keyをセット
 #os.environ["GOOGLE_API_KEY"] = st.secrets["gemini_key"]
