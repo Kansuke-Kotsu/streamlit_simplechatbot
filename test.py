@@ -5,9 +5,7 @@ from langchain_google_genai import ChatGoogleGenerativeAI
 
 # API Keyをセット
 if "GOOGLE_API_KEY" not in os.environ:
-    os.environ["GOOGLE_API_KEY"] = "AIzaSyDOkxdeIGiGBWnn93c-znm89dLZ5yf0flM"
-
-#genai.configure(api_key=st.secrets["gemini_key"])
+    os.environ["GOOGLE_API_KEY"] = st.secrets["gemini_key"]
 
 llm = ChatGoogleGenerativeAI(
     model="gemini-1.5-flash",
