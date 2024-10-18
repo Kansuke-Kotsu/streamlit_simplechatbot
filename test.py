@@ -10,8 +10,8 @@ st.write("This is a simple chatbot that uses several models to generate response
 
 
 # API Keyをセット
-#os.environ["GOOGLE_API_KEY"] = st.secrets["gemini_key"]
-os.environ["GOOGLE_API_KEY"] = "AIzaSyDOkxdeIGiGBWnn93c-znm89dLZ5yf0flM"
+os.environ["GOOGLE_API_KEY"] = st.secrets["gemini_key"]
+
 
 
 # Create a session state variable to store the chat messages. This ensures that the
